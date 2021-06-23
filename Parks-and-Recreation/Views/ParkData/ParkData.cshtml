@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Parks";
+}
+@model Parks_and_Recreation.Models.ParkListModel
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    @foreach (var park in Model.Parks)
+    {
+        <h3>@park.Parkname | @park.SanctuaryName</h3>
+        <p><i>Borough: </i> @park.Borough</p>
+        <p><i>Acres: </i> @park.Acres</p>
+        <p><i>Habitat: </i> @park.HabitatType</p>
+        <p><i>Description: </i> @park.Description</p>
+    }
+
+</div>

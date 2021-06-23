@@ -52,8 +52,8 @@ namespace Parks_and_Recreation
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
-                    name: "parkdata",
-                    pattern: "{controller=parkdata}");
+                    name: "parklist",
+                    pattern: "{controller=ParkData}/{action=List}" );
                
             });
         }

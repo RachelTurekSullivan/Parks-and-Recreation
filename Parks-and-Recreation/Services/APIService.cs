@@ -15,19 +15,23 @@ namespace Parks_and_Recreation.Services
     public class APIService
     {
         private string parkDataURL = "https://seriouslyfundata.azurewebsites.net/api/parks";
-        
-        public async Task<int> GetParkData()
+
+        public async Task<List<ParkDataModel>> GetParkData()
         {
 
             var client = new HttpClient();
-            var result = await client.GetAsync(parkDataURL);
-            result.EnsureSuccessStatusCode();
+            var response = await client.GetAsync(parkDataURL);
+            response.EnsureSuccessStatusCode();
 
-            var resultStr = await result.Content.ReadAsStringAsync();
-            Console.WriteLine(resultStr);
-            return Convert.ToInt32(resultStr);
+            string jsonString = await response.Content.ReadAsStringAsync();
+            //var parkData = JsonConvert.DeserializeObject<ParkListModel>(jsonString);
+            var parkData = JsonSerializer.Deserialize< List<ParkDataModel>>(jsonString);
+
+            
+            Console.WriteLine(parkData);
+            return parkData;
         }
-
-        
     }
 }
+
+      
