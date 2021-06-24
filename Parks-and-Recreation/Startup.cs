@@ -26,7 +26,7 @@ namespace Parks_and_Recreation
         {
             services.AddControllersWithViews();
             //services.AddMemoryCache();
-            services.AddScoped<CacheService>();
+            services.AddSingleton<CacheService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

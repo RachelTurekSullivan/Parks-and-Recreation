@@ -11,38 +11,27 @@ namespace Parks_and_Recreation.Services
     public class CacheService
     {
         private readonly APIService _apiService = new();
-        private List<ParkDataModel> ParkData = new();
         private readonly IMemoryCache _cache;
-        private string CacheKey;
-        private DateTime _dateTime;
 
 
-        public CacheService()
+        public CacheService(IMemoryCache cache)
         {
-            
-            _dateTime = DateTime.Now;
+            _cache = cache;
         }
 
         public async Task<List<ParkDataModel>> GetParkData()
         {
+            List<ParkDataModel> data = null;
             //if cache has expired? 
-            if (DateTime.Now.Subtract(_dateTime).TotalMinutes > 10 || this.ParkData.Count==0)
+            if (!_cache.TryGetValue("ParkData", out data))
             {
-                RefreshParkData();
-                _dateTime = DateTime.Now;
+                var parkData = await _apiService.GetParkData();
+                _cache.Set("ParkData", parkData, TimeSpan.FromMinutes(5));
+                var result = _apiService.GetParkData().Result;
             }
-            
-            return this.ParkData; 
-        }
 
-        
-        private async void RefreshParkData()
-        {
-            var result = _apiService.GetParkData().Result;
-            this.ParkData = result;
+            return data;
         }
-
       
-
     }
 }
