@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Parks";
+}
+@*@model Parks_and_Recreation.Models.ParkListModel*@
+
+<h2 class="display-3">Parks</h2>
+<hr />
+@foreach (var park in ViewBag.Parks)
+{
+    <h3 class="display-6">@park.Parkname </h3>
+    <p><i>Borough: </i> @park.Borough</p>
+    <p><i>Acres: </i> @park.Acres</p>
+    <p><i>Habitat: </i> @park.HabitatType</p>
+    <i>Description: </i> 
+    @Html.Raw(@park.Description)
+   
+}
+
+

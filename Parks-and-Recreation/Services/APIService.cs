@@ -24,7 +24,6 @@ namespace Parks_and_Recreation.Services
             response.EnsureSuccessStatusCode();
 
             string jsonString = await response.Content.ReadAsStringAsync();
-            //var parkData = JsonConvert.DeserializeObject<ParkListModel>(jsonString);
             var parkData = JsonSerializer.Deserialize< List<ParkDataModel>>(jsonString);
 
             
