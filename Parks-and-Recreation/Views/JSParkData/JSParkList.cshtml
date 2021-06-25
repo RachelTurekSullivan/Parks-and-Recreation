@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Parks";
+}
+@*@model Parks_and_Recreation.Models.ParkListModel*@
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+<div class="container">
+    <h2 class="display-3">Parks</h2>
+    <hr /> 
+
+    <form id='query-form'>
+        <div class="form-group">
+            <input class="form-control form-group-lg"
+                    id="query-input"
+                    type="text"
+                    name="query-input"
+                    placeholder="Type the word or phrase you want to search for & press Enter..."
+                    onsubmit="FetchSomeParks(event)" />
+        </div>
+    </form>
+      
+    
+
+    <div id='park-container' class="row">
+        <div class='col col-centered'>
+            <div id='park-list' class='row'>
+                <div onload="FetchSomeParks"></div>
+              @* park stuff goes here *@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/JSParkData.js"></script>
+
+
+

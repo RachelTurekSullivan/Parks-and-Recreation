@@ -27,10 +27,9 @@ namespace Parks_and_Recreation.Services
             {
                 var parkData = await _apiService.GetParkData();
                 _cache.Set("ParkData", parkData, TimeSpan.FromMinutes(5));
-                var result = _apiService.GetParkData().Result;
             }
 
-            return data;
+            return _cache.Get("ParkData") as List<ParkDataModel>;
         }
       
     }

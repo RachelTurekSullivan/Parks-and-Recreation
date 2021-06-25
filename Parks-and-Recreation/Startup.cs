@@ -55,9 +55,15 @@ namespace Parks_and_Recreation
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=ParkData}/{action=List}" );
-               
+                    name: "List",
+                    pattern: "{controller=ParkData}/{action=ParkList}" );
+                endpoints.MapControllerRoute(
+                   name: "JSParkData",
+                   pattern: "{controller=JSParkData}/{action=JSParkList}");
+                endpoints.MapControllerRoute(
+                   name: "ParkJSON",
+                   pattern: "{controller=JSParkData}/{action=ParkJSON}");
+
             });
         }
     }
